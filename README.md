@@ -22,3 +22,8 @@ Git, VS Code, and the VS Code Python extension are used throughout the plan.
 - [ ] Practice resolving a merge conflict.
 - [ ] Keep local secrets in `.env`; use `.env.example` as a placeholder template.
 - [ ] Begin the `qa-copilot` scaffold.
+
+## Day 1
+- Installed Python, pip, Git, and VS Code tools.
+- Connected the project to GitHub.
+- Practiced Git version control.
