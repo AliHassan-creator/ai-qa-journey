@@ -1,0 +1,63 @@
+{
+  "id": "db3b2154-5402-4596-9f38-52fa0f6d0d16",
+  "name": "Day 5 - Restful Booker Demo",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "https://restful-booker.herokuapp.com",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "username",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "password",
+      "value": "",
+      "type": "secret",
+      "enabled": true
+    },
+    {
+      "key": "invalidUsername",
+      "value": "invalid-user",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "invalidPassword",
+      "value": "invalid-password",
+      "type": "secret",
+      "enabled": true
+    },
+    {
+      "key": "testFirstName",
+      "value": "QA Day 5",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "testLastName",
+      "value": "Postman Run",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "updatedFirstName",
+      "value": "QA Day 5 Updated",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "maxResponseTimeMs",
+      "value": "5000",
+      "type": "default",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2026-10-26T00:00:00.000Z",
+  "_postman_exported_using": "Codex"
+}

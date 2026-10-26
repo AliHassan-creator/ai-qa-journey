@@ -1,0 +1,6 @@
+
+name,expected_status,actual_status
+Valid login,200,200
+Invalid login,401,401
+Forbidden request,403,401
+Missing resource,404,404

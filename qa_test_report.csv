@@ -1,0 +1,5 @@
+name,expected_status,actual_status,result
+Valid login,200,200,PASS
+Invalid password,401,401,PASS
+Forbidden request,403,401,FAIL
+Malformed test data,200,invalid,INVALID DATA

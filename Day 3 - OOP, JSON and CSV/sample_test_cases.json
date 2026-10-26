@@ -1,0 +1,128 @@
+[
+  {
+    "id": "TC-001",
+    "title": "Sign in with valid credentials",
+    "preconditions": "A registered sample user exists.",
+    "steps": [
+      "Open sign-in page",
+      "Enter valid email and password",
+      "Submit the form"
+    ],
+    "expected": "User is signed in and sees the account page.",
+    "priority": "high",
+    "type": "functional"
+  },
+  {
+    "id": "TC-002",
+    "title": "Reject an incorrect password",
+    "preconditions": "A registered sample user exists.",
+    "steps": [
+      "Open sign-in page",
+      "Enter the registered email and an incorrect password",
+      "Submit the form"
+    ],
+    "expected": "Sign-in is rejected and a clear error is shown.",
+    "priority": "high",
+    "type": "negative"
+  },
+  {
+    "id": "TC-003",
+    "title": "Require an email address",
+    "preconditions": "The sign-in page is open.",
+    "steps": [
+      "Leave the email field empty",
+      "Enter a password",
+      "Submit the form"
+    ],
+    "expected": "The form asks for the required email and does not sign in.",
+    "priority": "medium",
+    "type": "negative"
+  },
+  {
+    "id": "TC-004",
+    "title": "Require a password",
+    "preconditions": "The sign-in page is open.",
+    "steps": [
+      "Enter a registered email",
+      "Leave the password field empty",
+      "Submit the form"
+    ],
+    "expected": "The form asks for the required password and does not sign in.",
+    "priority": "medium",
+    "type": "negative"
+  },
+  {
+    "id": "TC-005",
+    "title": "Create a booking with valid details",
+    "preconditions": "The user is signed in and the booking form is open.",
+    "steps": [
+      "Enter guest and date details",
+      "Submit the booking form"
+    ],
+    "expected": "The booking is saved and its details are displayed.",
+    "priority": "high",
+    "type": "functional"
+  },
+  {
+    "id": "TC-006",
+    "title": "Reject checkout before check-in",
+    "preconditions": "The booking form is open.",
+    "steps": [
+      "Enter a checkout date earlier than the check-in date",
+      "Submit the booking form"
+    ],
+    "expected": "The form rejects the date range and explains the issue.",
+    "priority": "high",
+    "type": "boundary"
+  },
+  {
+    "id": "TC-007",
+    "title": "Reject equal check-in and checkout dates",
+    "preconditions": "The booking form is open.",
+    "steps": [
+      "Enter the same date for check-in and checkout",
+      "Submit the booking form"
+    ],
+    "expected": "The form applies its documented minimum-stay rule.",
+    "priority": "medium",
+    "type": "boundary"
+  },
+  {
+    "id": "TC-008",
+    "title": "View an existing booking",
+    "preconditions": "A booking exists for the sample user.",
+    "steps": [
+      "Open the booking list",
+      "Select the existing booking"
+    ],
+    "expected": "The selected booking details are displayed accurately.",
+    "priority": "medium",
+    "type": "functional"
+  },
+  {
+    "id": "TC-009",
+    "title": "Update booking details",
+    "preconditions": "A booking exists and is open for editing.",
+    "steps": [
+      "Change the guest name",
+      "Save the booking",
+      "Reopen the booking"
+    ],
+    "expected": "The saved booking displays the updated guest name.",
+    "priority": "medium",
+    "type": "functional"
+  },
+  {
+    "id": "TC-010",
+    "title": "Cancel a booking",
+    "preconditions": "A booking exists and is eligible for cancellation.",
+    "steps": [
+      "Open the booking",
+      "Choose cancel",
+      "Confirm cancellation"
+    ],
+    "expected": "The booking is cancelled and no longer appears as active.",
+    "priority": "low",
+    "type": "functional"
+  }
+]

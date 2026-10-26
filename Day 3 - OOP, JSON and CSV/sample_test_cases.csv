@@ -1,0 +1,11 @@
+id,title,preconditions,steps,expected,priority,type
+TC-001,Sign in with valid credentials,A registered sample user exists.,"[""Open sign-in page"",""Enter valid email and password"",""Submit the form""]",User is signed in and sees the account page.,high,functional
+TC-002,Reject an incorrect password,A registered sample user exists.,"[""Open sign-in page"",""Enter the registered email and an incorrect password"",""Submit the form""]",Sign-in is rejected and a clear error is shown.,high,negative
+TC-003,Require an email address,The sign-in page is open.,"[""Leave the email field empty"",""Enter a password"",""Submit the form""]",The form asks for the required email and does not sign in.,medium,negative
+TC-004,Require a password,The sign-in page is open.,"[""Enter a registered email"",""Leave the password field empty"",""Submit the form""]",The form asks for the required password and does not sign in.,medium,negative
+TC-005,Create a booking with valid details,The user is signed in and the booking form is open.,"[""Enter guest and date details"",""Submit the booking form""]",The booking is saved and its details are displayed.,high,functional
+TC-006,Reject checkout before check-in,The booking form is open.,"[""Enter a checkout date earlier than the check-in date"",""Submit the booking form""]",The form rejects the date range and explains the issue.,high,boundary
+TC-007,Reject equal check-in and checkout dates,The booking form is open.,"[""Enter the same date for check-in and checkout"",""Submit the booking form""]",The form applies its documented minimum-stay rule.,medium,boundary
+TC-008,View an existing booking,A booking exists for the sample user.,"[""Open the booking list"",""Select the existing booking""]",The selected booking details are displayed accurately.,medium,functional
+TC-009,Update booking details,A booking exists and is open for editing.,"[""Change the guest name"",""Save the booking"",""Reopen the booking""]",The saved booking displays the updated guest name.,medium,functional
+TC-010,Cancel a booking,A booking exists and is eligible for cancellation.,"[""Open the booking"",""Choose cancel"",""Confirm cancellation""]",The booking is cancelled and no longer appears as active.,low,functional

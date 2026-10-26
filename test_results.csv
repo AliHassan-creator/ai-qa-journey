@@ -1,0 +1,4 @@
+name,expected_status,actual_status,result
+Valid login,200,200,PASS
+Invalid login,401,401,PASS
+Forbidden request,403,401,FAIL

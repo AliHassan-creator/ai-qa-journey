@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Valid login",
+    "expected_status": 200,
+    "actual_status": 200
+  },
+  {
+    "name": "Invalid login",
+    "expected_status": 401,
+    "actual_status": 401
+  },
+  {
+    "name": "Forbidden request",
+    "expected_status": 403,
+    "actual_status": 401
+  }
+]
