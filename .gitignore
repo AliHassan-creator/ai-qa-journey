@@ -9,3 +9,4 @@ debug.log
 # Local files
 *.xlsx
 debug.log
+api-tests/report.xml
