@@ -1,0 +1,159 @@
+{
+  "test_cases": [
+    {
+      "id": "PAY-001",
+      "title": "Reject amount below minimum",
+      "preconditions": "Checkout is ready for card payment.",
+      "steps": [
+        "Set the amount to USD 0.99.",
+        "Attempt to continue to payment authorization."
+      ],
+      "expected": "The amount is not eligible for submission because it is below the stated minimum of USD 1.00.",
+      "priority": "high",
+      "type": "boundary"
+    },
+    {
+      "id": "PAY-002",
+      "title": "Accept minimum eligible amount",
+      "preconditions": "Checkout is ready for card payment.",
+      "steps": [
+        "Set the amount to USD 1.00.",
+        "Check whether the payment can be submitted."
+      ],
+      "expected": "The amount is eligible for submission at the inclusive lower limit.",
+      "priority": "high",
+      "type": "boundary"
+    },
+    {
+      "id": "PAY-003",
+      "title": "Accept amount one cent above minimum",
+      "preconditions": "Checkout is ready for card payment.",
+      "steps": [
+        "Set the amount to USD 1.01.",
+        "Check whether the payment can be submitted."
+      ],
+      "expected": "The amount is eligible for submission within the stated range and cent increment.",
+      "priority": "medium",
+      "type": "boundary"
+    },
+    {
+      "id": "PAY-004",
+      "title": "Accept amount one cent below maximum",
+      "preconditions": "Checkout is ready for card payment.",
+      "steps": [
+        "Set the amount to USD 9,999.99.",
+        "Check whether the payment can be submitted."
+      ],
+      "expected": "The amount is eligible for submission within the stated range and cent increment.",
+      "priority": "medium",
+      "type": "boundary"
+    },
+    {
+      "id": "PAY-005",
+      "title": "Accept maximum eligible amount",
+      "preconditions": "Checkout is ready for card payment.",
+      "steps": [
+        "Set the amount to USD 10,000.00.",
+        "Check whether the payment can be submitted."
+      ],
+      "expected": "The amount is eligible for submission at the inclusive upper limit.",
+      "priority": "high",
+      "type": "boundary"
+    },
+    {
+      "id": "PAY-006",
+      "title": "Reject amount above maximum",
+      "preconditions": "Checkout is ready for card payment.",
+      "steps": [
+        "Set the amount to USD 10,000.01.",
+        "Attempt to continue to payment authorization."
+      ],
+      "expected": "The amount is not eligible for submission because it is above the stated maximum of USD 10,000.00.",
+      "priority": "high",
+      "type": "boundary"
+    },
+    {
+      "id": "PAY-007",
+      "title": "Show order confirmation after approved authorization",
+      "preconditions": "The payment environment provides a documented test instrument that produces an approved authorization.",
+      "steps": [
+        "Submit an eligible USD amount using the approved test instrument.",
+        "Wait for the payment result."
+      ],
+      "expected": "An order-confirmation page is displayed with an order reference and the final amount.",
+      "priority": "critical",
+      "type": "functional"
+    },
+    {
+      "id": "PAY-008",
+      "title": "Do not create an order after declined authorization",
+      "preconditions": "The payment environment provides a documented test instrument that produces a declined authorization.",
+      "steps": [
+        "Submit an eligible USD amount using the declined-authorization test instrument.",
+        "Wait for the payment result."
+      ],
+      "expected": "No order is created and a payment-declined message is displayed.",
+      "priority": "critical",
+      "type": "negative"
+    },
+    {
+      "id": "PAY-009",
+      "title": "Mask payment details and omit them from confirmation",
+      "preconditions": "The payment environment provides a documented approved test instrument.",
+      "steps": [
+        "Enter the test card number and security code.",
+        "Inspect both values after entry.",
+        "Complete the approved test authorization and inspect the confirmation page."
+      ],
+      "expected": "The card number and security code are masked after entry, and neither is displayed on the confirmation page.",
+      "priority": "critical",
+      "type": "security"
+    }
+  ],
+  "priority_rationales": [
+    {"id": "PAY-001", "rationale": "High: accepting a below-minimum amount violates the specified eligibility range; likelihood is unassessed."},
+    {"id": "PAY-002", "rationale": "High: rejecting the inclusive minimum blocks a valid payment; likelihood is unassessed."},
+    {"id": "PAY-003", "rationale": "Medium: checks cent-step behavior immediately inside the lower boundary; likelihood is unassessed."},
+    {"id": "PAY-004", "rationale": "Medium: checks cent-step behavior immediately inside the upper boundary; likelihood is unassessed."},
+    {"id": "PAY-005", "rationale": "High: rejecting the inclusive maximum blocks a valid payment; likelihood is unassessed."},
+    {"id": "PAY-006", "rationale": "High: accepting an above-maximum amount violates the specified eligibility range; likelihood is unassessed."},
+    {"id": "PAY-007", "rationale": "Critical: an approved payment must produce order confirmation and the correct reference/amount; likelihood is unassessed."},
+    {"id": "PAY-008", "rationale": "Critical: creating an order for a declined payment has direct financial and order-integrity impact; likelihood is unassessed."},
+    {"id": "PAY-009", "rationale": "Critical: exposing card data conflicts with an explicit protection criterion; likelihood is unassessed."}
+  ],
+  "assumptions": [],
+  "open_questions": [
+    "Which sandbox-provided test instruments produce approved and declined authorizations?",
+    "Does the stated eligibility range mean every amount outside it must be rejected before authorization?",
+    "How should amounts with more than two decimal places be handled?",
+    "Which card brands, expiry formats, and security-code lengths are supported?",
+    "Is the amount entered by the customer or calculated from the cart?"
+  ],
+  "coverage_notes": [
+    {
+      "criterion": "AC1: The accepted currency is USD.",
+      "covered_by": ["PAY-001", "PAY-002", "PAY-003", "PAY-004", "PAY-005", "PAY-006"],
+      "gaps": ["No explicit non-USD rejection case is asserted because the criterion states the accepted currency but does not explicitly define rejection behavior for other currencies; confirm expected handling."]
+    },
+    {
+      "criterion": "AC2: An amount from USD 1.00 through USD 10,000.00 inclusive, in USD 0.01 increments, is eligible for submission.",
+      "covered_by": ["PAY-001", "PAY-002", "PAY-003", "PAY-004", "PAY-005", "PAY-006"],
+      "gaps": ["Confirm explicit rejection behavior outside the eligible interval and for precision beyond cents."]
+    },
+    {
+      "criterion": "AC3: Successful authorization displays order confirmation with order reference and final amount.",
+      "covered_by": ["PAY-007", "PAY-009"],
+      "gaps": ["The environment's approved test instrument is unspecified."]
+    },
+    {
+      "criterion": "AC4: Declined authorization creates no order and displays a payment-declined message.",
+      "covered_by": ["PAY-008"],
+      "gaps": ["The environment's decline test instrument is unspecified."]
+    },
+    {
+      "criterion": "AC5: Card number and security code are masked after entry and not displayed on confirmation.",
+      "covered_by": ["PAY-009"],
+      "gaps": []
+    }
+  ]
+}

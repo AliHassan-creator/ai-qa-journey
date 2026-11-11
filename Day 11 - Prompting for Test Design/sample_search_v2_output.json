@@ -1,0 +1,70 @@
+{
+  "test_cases": [
+    {
+      "id": "SEARCH-001",
+      "title": "Find a product whose name contains the submitted keyword",
+      "preconditions": "The catalog contains a product named Travel Mug and the search page is open.",
+      "steps": [
+        "Submit the non-empty keyword Mug.",
+        "Review the displayed products."
+      ],
+      "expected": "Products with names containing the submitted keyword are shown, including Travel Mug.",
+      "priority": "high",
+      "type": "functional"
+    },
+    {
+      "id": "SEARCH-002",
+      "title": "Match product names without regard to keyword case",
+      "preconditions": "The catalog contains a product named Travel Mug and the search page is open.",
+      "steps": [
+        "Search for mug and record the displayed results.",
+        "Search for MUG and record the displayed results.",
+        "Compare the two result sets."
+      ],
+      "expected": "The same products are returned for the lowercase and uppercase keywords, consistent with case-insensitive matching.",
+      "priority": "high",
+      "type": "functional"
+    },
+    {
+      "id": "SEARCH-003",
+      "title": "Show the specified message when no product matches",
+      "preconditions": "The catalog contains no product whose name contains the chosen test keyword and the search page is open.",
+      "steps": [
+        "Submit a non-empty keyword that is absent from every product name.",
+        "Review the no-results state."
+      ],
+      "expected": "The page displays: No products found.",
+      "priority": "medium",
+      "type": "negative"
+    }
+  ],
+  "priority_rationales": [
+    {"id": "SEARCH-001", "rationale": "High: failure to return matching products undermines the primary search purpose; likelihood is unassessed."},
+    {"id": "SEARCH-002", "rationale": "High: case-sensitive behavior would violate an explicit matching criterion; likelihood is unassessed."},
+    {"id": "SEARCH-003", "rationale": "Medium: a clear no-results response is an explicit criterion, though it is a less common path; likelihood is unmeasured."}
+  ],
+  "assumptions": [],
+  "open_questions": [
+    "Does 'name contains keyword' mean literal substring matching or whole-token matching?",
+    "How should an empty or whitespace-only query behave?",
+    "Are leading/trailing spaces trimmed, and how are punctuation or accents handled?",
+    "Are search results ordered, paginated, or filterable?"
+  ],
+  "coverage_notes": [
+    {
+      "criterion": "AC1: Submitting a non-empty keyword shows products whose names contain that keyword.",
+      "covered_by": ["SEARCH-001"],
+      "gaps": ["Clarify whether contains means literal substring or whole token."]
+    },
+    {
+      "criterion": "AC2: Matching is case-insensitive.",
+      "covered_by": ["SEARCH-002"],
+      "gaps": []
+    },
+    {
+      "criterion": "AC3: When no product matches, the page displays 'No products found.'",
+      "covered_by": ["SEARCH-003"],
+      "gaps": []
+    }
+  ]
+}

@@ -6,7 +6,6 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DAY8_DIR = PROJECT_ROOT / "Day 8 - Playwright basics"
 TEST_FILE = DAY8_DIR / "test_saucedemo.py"

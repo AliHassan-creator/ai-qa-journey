@@ -12,6 +12,7 @@ import json
 from jsonschema import Draft202012Validator
 
 
+@pytest.mark.api
 @pytest.mark.regression
 def test_existing_booking_matches_json_schema(
     api_session, api_config, booking_factory

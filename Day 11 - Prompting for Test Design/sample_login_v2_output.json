@@ -1,0 +1,113 @@
+{
+  "test_cases": [
+    {
+      "id": "LOGIN-001",
+      "title": "Sign in with registered credentials",
+      "preconditions": "A registered sample user exists and the sign-in page is open.",
+      "steps": [
+        "Enter the registered user's email.",
+        "Enter the matching password.",
+        "Submit the sign-in form."
+      ],
+      "expected": "The user is signed in and taken to the account dashboard.",
+      "priority": "high",
+      "type": "functional"
+    },
+    {
+      "id": "LOGIN-002",
+      "title": "Require an email address",
+      "preconditions": "The sign-in page is open.",
+      "steps": [
+        "Leave the email field empty.",
+        "Enter a password.",
+        "Submit the sign-in form."
+      ],
+      "expected": "The user is not signed in and the email field is identified as required.",
+      "priority": "high",
+      "type": "negative"
+    },
+    {
+      "id": "LOGIN-003",
+      "title": "Require a password",
+      "preconditions": "The sign-in page is open.",
+      "steps": [
+        "Enter a registered user's email.",
+        "Leave the password field empty.",
+        "Submit the sign-in form."
+      ],
+      "expected": "The user is not signed in and the password field is identified as required.",
+      "priority": "high",
+      "type": "negative"
+    },
+    {
+      "id": "LOGIN-004",
+      "title": "Reject an unrecognized email",
+      "preconditions": "The sign-in page is open and the test email is not registered.",
+      "steps": [
+        "Enter an unrecognized email and a non-empty password.",
+        "Submit the sign-in form."
+      ],
+      "expected": "The user is not signed in and sees: Email or password is incorrect.",
+      "priority": "high",
+      "type": "negative"
+    },
+    {
+      "id": "LOGIN-005",
+      "title": "Reject an incorrect password",
+      "preconditions": "A registered sample user exists and the sign-in page is open.",
+      "steps": [
+        "Enter the registered user's email and an incorrect non-empty password.",
+        "Submit the sign-in form."
+      ],
+      "expected": "The user is not signed in and sees: Email or password is incorrect.",
+      "priority": "high",
+      "type": "negative"
+    }
+  ],
+  "priority_rationales": [
+    {
+      "id": "LOGIN-001",
+      "rationale": "High: incorrect handling blocks a registered user from accessing the account; likelihood is unassessed."
+    },
+    {
+      "id": "LOGIN-002",
+      "rationale": "High: failure to enforce the required email field can break sign-in validation; likelihood is unassessed."
+    },
+    {
+      "id": "LOGIN-003",
+      "rationale": "High: failure to enforce the required password field can break sign-in validation; likelihood is unassessed."
+    },
+    {
+      "id": "LOGIN-004",
+      "rationale": "High: accepting an unrecognized account would violate the specified authentication behavior; likelihood is unassessed."
+    },
+    {
+      "id": "LOGIN-005",
+      "rationale": "High: accepting an incorrect password would violate the specified authentication behavior; likelihood is unassessed."
+    }
+  ],
+  "assumptions": [],
+  "open_questions": [
+    "Is email matching case-sensitive or normalized?",
+    "Are there password length or character rules?",
+    "Are account lockout, rate limiting, CAPTCHA, or MFA part of sign-in?",
+    "What exact required-field message and accessible association are expected?"
+  ],
+  "coverage_notes": [
+    {
+      "criterion": "AC1: Correct credentials sign in and navigate to the account dashboard.",
+      "covered_by": ["LOGIN-001"],
+      "gaps": []
+    },
+    {
+      "criterion": "AC2: An empty email or password prevents sign-in and identifies the required field.",
+      "covered_by": ["LOGIN-002", "LOGIN-003"],
+      "gaps": ["Exact validation wording and accessibility association are unspecified."]
+    },
+    {
+      "criterion": "AC3: An unrecognized email or incorrect password shows the same generic message and does not sign in.",
+      "covered_by": ["LOGIN-004", "LOGIN-005"],
+      "gaps": []
+    }
+  ]
+}

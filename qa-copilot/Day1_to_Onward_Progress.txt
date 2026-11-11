@@ -1,14 +1,14 @@
 5-WEEK AI QUALITY ENGINEERING PLAN PROGRESS RECORD — DAY 1 ONWARD
 (CURRENT)
 
-Last documented learning point: Day 9 — Playwright framework design
-implemented and verified (9 passed, 2026-11-11):
-Completed Day 9: Completed
+Last documented learning point: Day 12 — Advanced AI test design
+capstone increment implemented and validated locally (2026-11-11):
+Completed Day 9: Completed; Days 10–12: In progress
 
-Current status: Days 1–9 are complete. Day 9 includes a working POM,
-login state reuse, cart and checkout flows, worker-safe parallel runs,
-environment-variable configuration, verified failure artifacts, coding
-conventions, and a local API-to-UI hybrid test.
+Current status: Days 1–9 are complete. Day 10 hosted CI verification and
+Day 11's real-story comparison remain. Day 12 prompt library, checklist,
+and core validators are implemented and locally tested; learner exercises
+remain to be practiced.
 
 ============================================================ OVERVIEW
 ============================================================
@@ -18,10 +18,15 @@ and version control. 2. Python fundamentals for testers. 3. API testing
 fundamentals and SQL. 4. SQL for testers. 5. HTTP and REST concepts. 6.
 API automation with Python. 7. Advanced Pytest and data-driven testing.
 8. Playwright browser/UI automation (completed and verified). 9.
-Playwright framework design (implemented and verified).
+Playwright framework design (implemented and verified). 10. CI/CD with
+GitHub Actions (local implementation; hosted verification pending). 11.
+Prompting for test design (materials ready; real-story exercise pending).
+12. Advanced AI test design (capstone increment implemented; hands-on
+exercises pending).
 
 The 5-week plan contains 25 working days. Based on recorded progress,
-Days 1–9 are complete; 9 of 25 working days (36%) are recorded complete.
+Days 1–9 are complete; Days 10–12 are in progress. 9 of 25 working days
+(36%) are recorded complete.
 
 ============================================================ DAY 1 —
 GIT, GITHUB AND DEVELOPMENT ENVIRONMENT STATUS: COMPLETED
@@ -255,7 +260,9 @@ Learning approach: explain the concept before code, explain the behavior
 under test, use practical verified examples, and describe failures rather
 than hiding them.
 
-Immediate next action: Begin Day 10 — CI/CD with GitHub Actions.
+Immediate next action: Practice Day 12's five prompts and eight-point
+review checklist on approved, sanitized requirements. Complete Day 11's
+real-story comparison and Day 10's hosted CI verification as follow-up.
 
 ============================================================ DAY 9 —
 PLAYWRIGHT FRAMEWORK DESIGN STATUS: COMPLETED
@@ -295,6 +302,103 @@ Verification: API/UI hybrid test — 1 passed. Full Day 9 Chromium suite
 with two xdist workers — 9 passed (2026-11-11). Temporary failure probe
 verified trace.zip, test-failed-1.png, and video.webm together; probe
 removed afterward.
+
+============================================================ DAY 10 —
+CI/CD WITH GITHUB ACTIONS STATUS: IN PROGRESS
+============================================================
+
+Implemented locally:
+- `.github/workflows/ci.yml` defines API, offline QA-Copilot, and
+    Playwright jobs.
+- API checks use a Python 3.12/3.13 matrix.
+- Push and pull-request triggers, a daily UTC schedule, and manual
+    workflow dispatch are configured.
+- JUnit and Playwright artifacts are uploaded even when checks fail.
+- The Playwright job runs on pull requests, scheduled runs, and manual
+    dispatch; lightweight API and offline checks run on pushes.
+- Root README includes the GitHub Actions status badge.
+- Day 10 concepts, workflow structure, artifacts, matrix, schedule,
+    secrets guidance, and local reproduction commands are documented in
+    `Day 10 - CI-CD with GitHub Actions/README.md`.
+
+Security note: the public training API uses public demo credentials, so
+the workflow does not place them in GitHub Secrets. Private credentials
+must be configured as Actions secrets, not committed to the repository.
+
+Local verification (2026-11-11): workflow YAML parsed; `ruff check
+qa-copilot` passed; offline CI unit tests — 17 passed; API job — 19
+passed on Python 3.13, with JUnit and HTML reports; combined Day 8/9
+browser job — 28 passed on Python 3.13/Windows, with JUnit and HTML
+reports. Failure artifact capture was separately confirmed.
+
+Still pending: first GitHub-hosted run on Ubuntu, the Python 3.12 matrix
+leg, and confirmation that the status badge renders. Keep Day 10 in
+progress until those hosted checks are reviewed.
+
+============================================================ DAY 11 —
+PROMPTING FOR TEST DESIGN STATUS: IN PROGRESS
+============================================================
+
+Implemented:
+- Reusable structured prompt template at `qa-copilot/prompts/testcase_gen.md`.
+- Three fictional stories with explicit criteria and intentional
+    ambiguities: sign-in, card payment, and product search.
+- A worked v1-versus-v2 comparison and review scorecard.
+- A three-story comparison table with separate v1/v2 scores, identified
+    omissions, duplicates, unsupported ideas, and reviewer caveats in
+    `Day 11 - Prompting for Test Design/comparison_results.md`.
+- A sample structured sign-in response that uses the Day 3 TestCase
+    fields and separately records priority rationale, assumptions,
+    questions, and coverage.
+- A payment v2 example with six amount boundary values plus authorization
+    and masking cases; unspecified rejection rules and sandbox test-card
+    behavior are called out as open questions.
+- A search v2 example covering name match, case-insensitivity, and the
+    exact no-results message, with unspecified search behavior listed as
+    questions.
+- Prompt review found that priority explanations were requested but no
+    output field was provided. The contract now uses a top-level
+    `priority_rationales` list, preserving the Day 3 TestCase schema.
+
+Validation: `test_prompt_outputs.py` — 3 passed. All three sample JSON
+outputs parsed; each test case loaded through the Day 3 `TestCase` model;
+priority rationale IDs and coverage references were validated. The
+comparison outputs are assistant-generated lesson examples, not claimed
+external-model runs.
+
+Still to do for exact workbook completion: substitute three approved,
+sanitized real work stories for the fictional examples, rerun and review
+v1/v2 on those stories, and update the comparison evidence. The learner's
+independent walkthrough remains pending. Do not include sensitive
+requirements or data in an unapproved AI service.
+
+============================================================ DAY 12 —
+ADVANCED AI TEST DESIGN STATUS: IN PROGRESS
+============================================================
+
+Implemented:
+- Five prompts in `qa-copilot/prompts/`: test-case generation,
+    ambiguity finding, test-data generation, risk prioritization, and bug
+    report writing.
+- Eight-point AI-output review checklist.
+- JSON Schema contract for the Day 11 test-case output format.
+- Deterministic core validators for schema, duplicate IDs/exact normalized
+    duplicate cases, and acceptance-criteria traceability.
+- Combined `validate_test_case_output` returns structured issues with
+    stable codes, messages, and paths; it does not rewrite generated data.
+- CI offline job now includes QA-Copilot validator tests and Day 11 output
+    contract tests.
+
+Verification (2026-11-11): 10 Day 12 validator tests and 3 Day 11
+sample-contract tests passed (13 focused); the full offline CI selection
+passed 30 tests; `ruff check qa-copilot` passed. The capstone core
+validator target of 10+ unit tests is met locally.
+
+Still to do: practice all five prompts on approved, sanitized requirements;
+review AI priorities and override reasons; apply the checklist to real
+outputs; explain validator limits, especially exact duplicate detection
+versus semantic duplicates. Day 12 remains in progress pending hands-on
+practice and learner walkthrough.
 
 ============================================================ DAY 9
 START — PLAYWRIGHT FRAMEWORK DESIGN
