@@ -1,0 +1,2 @@
+# Add pytest-xdist to the Day 8 Playwright dependencies for parallel workers.
+pytest-xdist

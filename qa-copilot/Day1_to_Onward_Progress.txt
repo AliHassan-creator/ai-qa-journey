@@ -1,0 +1,376 @@
+5-WEEK AI QUALITY ENGINEERING PLAN PROGRESS RECORD — DAY 1 ONWARD
+(CURRENT)
+
+Last documented learning point: Day 9 — Playwright framework design
+implemented and verified (9 passed, 2026-11-11):
+Completed Day 9: Completed
+
+Current status: Days 1–9 are complete. Day 9 includes a working POM,
+login state reuse, cart and checkout flows, worker-safe parallel runs,
+environment-variable configuration, verified failure artifacts, coding
+conventions, and a local API-to-UI hybrid test.
+
+============================================================ OVERVIEW
+============================================================
+
+The learning journey has progressed through: 1. Development environment
+and version control. 2. Python fundamentals for testers. 3. API testing
+fundamentals and SQL. 4. SQL for testers. 5. HTTP and REST concepts. 6.
+API automation with Python. 7. Advanced Pytest and data-driven testing.
+8. Playwright browser/UI automation (completed and verified). 9.
+Playwright framework design (implemented and verified).
+
+The 5-week plan contains 25 working days. Based on recorded progress,
+Days 1–9 are complete; 9 of 25 working days (36%) are recorded complete.
+
+============================================================ DAY 1 —
+GIT, GITHUB AND DEVELOPMENT ENVIRONMENT STATUS: COMPLETED
+============================================================
+
+Recorded work: - Installed Python, VS Code and Git. - Initialized the
+ai-qa-journey repository. - Created Git commits and branches. - Created
+and merged a GitHub Pull Request. - Practiced resolving a merge
+conflict. - Added .gitignore and .env.example.
+
+Outcome: Established a Git-based workflow for the QA automation project.
+
+============================================================ DAY 2 —
+PYTHON CORE FOR TESTERS STATUS: COMPLETED
+============================================================
+
+Recorded topic: - Python Core for Testers.
+
+Outcome: Day 2 is recorded as completed. The available progress record
+does not contain a detailed list of individual exercises or concepts.
+
+============================================================ DAY 3 — API
+TESTING FUNDAMENTALS AND SQL STATUS: COMPLETED
+============================================================
+
+Recorded topics: - API request and response validation. - Postman
+variables. - SQL queries.
+
+Outcome: Started connecting API testing concepts with database querying
+and validation.
+
+============================================================ DAY 4 — SQL
+FOR TESTERS STATUS: COMPLETED
+============================================================
+
+Recorded topic: - SQL for Testers.
+
+Database learning environment: - MySQL/MariaDB through phpMyAdmin was
+selected. - Default database for future lessons: qa_advanced_training.
+
+Outcome: Day 4 is recorded as completed. Specific queries or exercises
+are not detailed in the available progress record.
+
+============================================================ DAY 5 —
+HTTP AND REST CONCEPTS STATUS: COMPLETED
+============================================================
+
+Recorded work: - Studied HTTP/REST concepts. - Completed an HTTP/REST
+quiz.
+
+Outcome: Strengthened the theoretical foundation for API testing.
+Individual quiz questions and score are not present in the available
+record.
+
+============================================================ DAY 6 — API
+AUTOMATION WITH PYTHON STATUS: COMPLETED
+============================================================
+
+Recorded environment and versions: - Python 3.13.15 (64-bit) - pip
+26.2.1 - Git for Windows 2.56.0 - VS Code 1.134.0 - pytest 9.1.1 -
+Requests 2.34.2 - Python virtual environment: .venv
+
+Recorded practical work: - Configured the Python virtual environment. -
+Installed and configured pytest. - Installed the Requests library. -
+Created API automation tests. - Implemented
+api-tests/test_booking_api.py. - Executed the API test file
+successfully.
+
+Outcome: Successfully executed API automation using Python, Requests and
+Pytest.
+
+============================================================ DAY 7 —
+ADVANCED PYTEST AND DATA-DRIVEN TESTING STATUS: COMPLETED
+============================================================
+
+Recorded implementation:
+
+1.  CSV-driven API tests File: api-tests/data/booking_id_cases.csv
+
+2.  JSON Schema validation File: api-tests/schemas/booking_schema.json
+
+3.  Pytest markers
+
+    -   Configured smoke and regression markers in pytest.ini.
+    -   Practiced selecting tests by marker.
+
+4.  Flaky test retry demonstration
+
+    -   Used pytest-rerunfailures.
+
+5.  Test reporting
+
+    -   HTML reports.
+    -   JUnit XML reports.
+    -   Normalized JSON test-runner output.
+
+6.  Custom runner File: Day 7 - Advanced pytest and data-driven
+    testing/day7_runner.py
+
+7.  Runner unit tests File: test_day7_runner.py
+
+Recorded execution results: - Custom runner unit tests: 3 passed. - Full
+API suite: 19 passed. - Regression marker run: 17 passed, 2
+deselected. - Reports were generated.
+
+Outcome: Practiced data-driven testing, schema validation, test
+selection, retry behavior, report generation and custom test execution.
+
+============================================================ DAY 8 —
+PLAYWRIGHT BASICS STATUS: COMPLETED
+============================================================
+
+Objective: Begin browser-based UI automation with Playwright.
+
+A. Environment setup
+
+Recorded versions: - Python 3.13.15 - Playwright Python package:
+1.64.1 - pytest-playwright: 0.10.0 - Chromium installed and launch
+verified.
+
+The browser installation listing also showed multiple Playwright
+versions and browser caches from other projects. The active Python
+virtual environment uses Playwright 1.64.1.
+
+Verification performed: - python -m playwright –version - python -m
+playwright install –list - python -m playwright install chromium -
+Successfully launched Chromium using the Playwright Python API.
+
+B. Project structure
+
+Created: Day 8 - Playwright Basics/ tests/ test_shop.py
+
+C. Demo application
+
+Used: https://www.saucedemo.com/
+
+D. Automated UI tests implemented
+
+Test file: Day 8 - Playwright Basics/tests/test_shop.py
+
+Four tests were implemented and successfully executed:
+
+1.  test_demo_store_homepage
+    -   Opens the SauceDemo homepage.
+    -   Verifies the page title is “Swag Labs”.
+    -   Verifies username, password and login controls are visible.
+2.  test_successful_login
+    -   Enters standard_user and secret_sauce.
+    -   Clicks the login button.
+    -   Verifies navigation to the inventory page.
+    -   Verifies the Products heading.
+    -   Verifies six product elements are displayed.
+3.  test_invalid_login
+    -   Enters invalid credentials.
+    -   Verifies that an error message is visible.
+    -   Verifies the error contains the expected invalid-credentials
+        message.
+    -   Verifies the browser remains on the login page.
+4.  test_add_product_to_cart
+    -   Logs in with the demo credentials.
+    -   Adds Sauce Labs Backpack to the cart.
+    -   Verifies the cart badge displays “1”.
+    -   Opens the cart.
+    -   Verifies one cart item exists.
+    -   Verifies the product name is Sauce Labs Backpack.
+
+E. Recorded execution result
+
+Command: python -m pytest “Day 8 - Playwright Basics_shop.py” -v
+
+Result: 4 passed.
+
+F. Concepts explained and reviewed
+
+-   Playwright and browser automation.
+-   The Page object.
+-   Locators and selector strategies.
+-   CSS class selectors.
+-   Attribute selectors such as data-test.
+-   Actions such as fill() and click().
+-   Assertions using expect().
+-   Visibility, text, URL, title and element-count assertions.
+-   Positive testing and negative testing.
+-   Playwright action auto-waiting.
+-   Web-first assertion retries.
+-   Difference between performing an action and verifying its result.
+-   Choosing stable locators for maintainable tests.
+
+G. Knowledge check
+
+Five conceptual questions were answered correctly: 1. Identifying what
+locator(…).click() does. 2. Understanding to_have_text(“1”). 3.
+Identifying invalid-login testing as negative testing. 4. Understanding
+assertion retries and timeouts. 5. Distinguishing a CSS class selector
+from a data-test attribute selector.
+
+H. Remaining Day 8 activities
+
+1.  Practice diagnosing locator/action failures as well as assertion
+    failures.
+2.  Continue using Playwright debugging tools, including Trace Viewer.
+3.  Practice Playwright Codegen and review the generated test code.
+
+The checkout workflow is implemented in the current suite and was
+included in the reported 13-passed full-suite run. Earlier notes about
+an unreceived test_debugging_practice result are historical and are
+superseded by the dated progress update below.
+
+============================================================ CURRENT
+PROGRESS SUMMARY
+============================================================
+
+Day 1: Completed Day 2: Completed Day 3: Completed Day 4: Completed Day
+5: Completed Day 6: Completed Day 7: Completed Day 8: Completed Day 9: Completed
+
+Confirmed practical test results: - Day 6 API test file: passed. - Day 7
+custom runner unit tests: 3 passed. - Day 7 full API suite: 19 passed. -
+Day 7 regression selection: 17 passed, 2 deselected. - Day 8 full
+Playwright UI suite: 13 passed. - Day 8 selection checks and trace
+exercise: passed. - Day 8 conceptual knowledge check: 5 correct
+answers.
+
+Overall: - 9 of 25 working days completed. - Day 9 is complete. - 36% of
+the 5-week plan is recorded complete.
+
+============================================================ LEARNING
+APPROACH AND NEXT ACTIONS
+============================================================
+
+Learning approach: explain the concept before code, explain the behavior
+under test, use practical verified examples, and describe failures rather
+than hiding them.
+
+Immediate next action: Begin Day 10 — CI/CD with GitHub Actions.
+
+============================================================ DAY 9 —
+PLAYWRIGHT FRAMEWORK DESIGN STATUS: COMPLETED
+============================================================
+
+Implemented in: Day 9 - Playwright Framework Design/
+
+- Page objects: BasePage, LoginPage, InventoryPage, CartPage, and
+    CheckoutPage.
+- Pytest fixtures: `authenticated_state` saves browser state once for the
+    test session; `authenticated_page` creates an isolated context using
+    that state.
+- Parallel execution: added pytest-xdist support and made saved auth
+    state unique per worker.
+- Failure artifact options documented for retained trace, screenshot, and
+    video output.
+- Environment configuration: base URL, username, and password are read
+    from environment variables with demo defaults.
+- SauceDemo-specific detail: the fixture also captures/restores the
+    site's sessionStorage login marker because Playwright storage_state
+    does not include sessionStorage.
+- Tests cover valid login, invalid credentials, saved-state access,
+    add-to-cart badge, cart contents, required checkout fields, and a
+    completed checkout.
+- API/UI hybrid: a local standard-library demo server accepts API-created
+    records; Playwright verifies the same record's ID, title, and
+    description in the browser UI. Server and in-memory records are
+    isolated per pytest worker.
+- Coding conventions drafted in
+    Day 9 - Playwright Framework Design/CODING_CONVENTIONS.md.
+- Windows artifact path issue fixed in the active pytest-playwright
+    installation; short output paths are documented.
+- README explains the project structure, fixture behavior, and test
+    command options.
+
+Verification: API/UI hybrid test — 1 passed. Full Day 9 Chromium suite
+with two xdist workers — 9 passed (2026-11-11). Temporary failure probe
+verified trace.zip, test-failed-1.png, and video.webm together; probe
+removed afterward.
+
+============================================================ DAY 9
+START — PLAYWRIGHT FRAMEWORK DESIGN
+============================================================
+
+Day 9 in the tracker is focused on Playwright framework design:
+- Page Object Model (POM)
+- fixture design and isolated browser contexts
+- storage_state for reuse of login state
+- API + UI hybrid testing
+- parallel execution and environment configuration
+
+Planned Day 9 deliverable: Refactored UI framework (PROJECT A)
+Planned Day 9 capstone increment: Define coding conventions to feed into
+CLAUDE.md later.
+
+The starting objective is to refactor the current Playwright tests into a
+cleaner structure using LoginPage, InventoryPage, and CartPage while
+keeping the same working behavior established in Day 8.
+
+
+============================================================ DAY 8
+PROGRESS UPDATE — 2026-11-11
+============================================================
+
+The current expanded browser suite is in
+Day 8 - Playwright basics/test_saucedemo.py. The sorting test had not
+been included in the older Day 8 report. It was run separately with
+Chromium and passed:
+
+    python -m pytest ".\\Day 8 - Playwright basics\\test_saucedemo.py" -k sorting -v --browser chromium
+
+Recorded targeted result: 1 passed, 12 deselected. After that targeted
+run, the complete current browser suite was run with Chromium and all 13
+cases passed. The full-suite result includes the sorting test, so both
+the targeted sorting exercise and the expanded suite are verified.
+
+The sorting test selects “Price (low to high)”, verifies the selected
+sort option, parses displayed prices with Decimal, and confirms that the
+prices are in ascending order. This practices checking both the UI
+control state and the resulting product order.
+
+Trace Viewer practice started: The sorting test was rerun with
+--tracing on and passed (1 passed, 12 deselected). Playwright created
+trace.zip under
+Day 8 - Playwright basics/reports/artifacts/trace-practice/day-8-playwright-basics-test-saucedemo-py-test-product-sorting-low-to-high-price-chromium/.
+The trace was opened and the action timeline and page preview were
+reviewed. The preview showed the “Price (low to high)” selection and
+ascending visible prices.
+
+Test-isolation practice: The add-to-cart and remove-from-cart checks
+were run together with Chromium. Result: 2 passed. Each selected test
+performed its own login and cart setup, and both passed in the same run.
+This supports that the tests are self-contained; the separate Playwright
+page fixture also provides each test with its own browser page/context.
+
+Controlled assertion-failure practice: The expected text was temporarily
+changed from “Products” to “Productss” in test_valid_login_opens_inventory.
+The targeted run failed as expected (1 failed, 12 deselected). Navigation
+to /inventory.html succeeded; the assertion timed out because the exact
+“Productss” text was not present. The accessibility snapshot showed the
+actual heading “Products”. The expected text was restored to “Products”
+after diagnosis. This demonstrates an assertion failure caused by an
+incorrect test expectation, rather than a login or navigation defect.
+After restoration, the targeted valid-login test was rerun with the
+project virtual environment and passed (1 passed, 12 deselected).
+
+Controlled locator/action-failure practice: The login helper's button
+accessible name was temporarily changed from “Login” to “Log in”. The
+valid-login test failed at Locator.click with a 30-second TimeoutError;
+this showed Playwright could not find a button matching the requested
+accessible name. The correct name “Login” was restored, and the targeted
+test passed again (1 passed, 12 deselected). This distinguishes a failed
+interaction/locator from an assertion failure after page navigation.
+
+Day 8 is complete and verified. No further action is required for this
+milestone beyond documenting the final pass result and moving to Day 9.
+
+END OF PROGRESS RECORD

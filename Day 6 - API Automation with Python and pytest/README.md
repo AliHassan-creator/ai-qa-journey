@@ -12,7 +12,7 @@
 The existing `api-tests/` path remains the canonical suite so the project's
 original test command and report location remain usable:
 
-- [`test_booking_api.py`](../api-tests/test_booking_api.py) contains 15 collected cases, including parameterized booking ID and price values.
+- [`test_booking_api.py`](../api-tests/test_booking_api.py) contains API checks for booking IDs, price values, CSV-driven cases, and response JSON Schema validation. The current repository collects 19 API cases and 30 tests total, including the offline Day 7 exercises.
 - `api_session` provides a `requests.Session`; `auth_token` obtains an API token when a test needs one.
 - `booking_factory` creates uniquely identified test data and deletes only its own remaining bookings in fixture teardown.
 - The base URL and demo credentials can be overridden with `RESTFUL_BOOKER_BASE_URL`, `RESTFUL_BOOKER_USERNAME`, and `RESTFUL_BOOKER_PASSWORD`.
@@ -49,9 +49,10 @@ Git. Each HTTP call has a 15-second timeout. The suite does not retry requests.
 
 ## Verification record — 2026-10-26
 
-- Collection: **15 tests collected** successfully.
+- At the time of this recorded verification, collection found **15 API cases**. The suite was later extended with CSV-driven and JSON Schema checks; the current combined repository collection is 30 tests.
 - The sandboxed run could not reach `restful-booker.herokuapp.com` (`WinError 10013`), so that attempt produced connection failures and fixture setup errors.
 - A network-enabled verification run then completed: **15 passed, 0 failed, 0 errors, 0 skipped** in 31.141 seconds.
+- The added `test_existing_booking_matches_json_schema` case was later run independently and passed against the public demo API.
 - JUnit XML was written to the system temporary directory and reviewed for those counts; generated report files were not added to the repository.
 
 The passing run verifies the asserted behavior on this run of the public demo

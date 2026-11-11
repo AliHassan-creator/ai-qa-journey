@@ -10,3 +10,7 @@ debug.log
 *.xlsx
 debug.log
 api-tests/report.xml
+reports/
+Day 7 - Advanced pytest and data-driven testing/reports/
+Day 8 - Playwright basics/reports/
+Day 9 - Playwright Framework Design/reports/
